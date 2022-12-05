@@ -52,7 +52,7 @@ public class Main {
     static final int SERVER_PORT = 8989;
 
     public static void main (String[] args) {
-        try (ServerSocket serverSocket = new ServerSocket(8080);) {
+        try (ServerSocket serverSocket = new ServerSocket(8989);) {
             System.out.println("Старт подключения к " + SERVER_PORT + "...");
 
             BooleanSearchEngine engine = new BooleanSearchEngine(new File ("C:\\\\Games\\\\java\\\\pcs-final-diplom\\\\pdfs"));
