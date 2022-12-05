@@ -10,12 +10,16 @@ public class BooleanSearchEngine implements SearchEngine {
 
     private void addToIdxMap(HashMap<String, ArrayList<PageEntry>> map, String[] words, String fn, int page){
         for (String word: words) {
-            var lowerWord = word.toLowerCase();
+            String lowerWord = word.toLowerCase();
+//            var lowerWord = word.toLowerCase();  //на 18  джаву
             map.computeIfAbsent(lowerWord, k -> new ArrayList<>());
-            var array = map.get(lowerWord);
-            var filteredArray = array.stream().filter(pg -> pg.getPdfName().equals(fn) && pg.getPage() == page).collect(Collectors.toList());
+            ArrayList <PageEntry> array = map.get(lowerWord);
+           // var array = map.get(lowerWord);  //на 18  джаву
+            List <PageEntry> filteredArray = array.stream().filter(pg -> pg.getPdfName().equals(fn) && pg.getPage() == page).collect(Collectors.toList());
+//            var filteredArray = array.stream().filter(pg -> pg.getPdfName().equals(fn) && pg.getPage() == page).collect(Collectors.toList());  //на 18  джаву
             if (filteredArray.size() > 0){
-                var curPe = filteredArray.get(0);
+                PageEntry curPe = filteredArray.get(0);
+//                var curPe = filteredArray.get(0);  //на 18  джаву
                 curPe.setCount(curPe.getCount() + 1);
             }else{
                 var newPe = new PageEntry(fn, page);
@@ -28,7 +32,8 @@ public class BooleanSearchEngine implements SearchEngine {
 
     @Override
     public List<PageEntry> search(String word) {
-        var array = this.idxMap.get(word.toLowerCase());
+        ArrayList <PageEntry> array = this.idxMap.get(word.toLowerCase());
+//        var array = this.idxMap.get(word.toLowerCase()); //на 18  джаву
         if (array == null || array.isEmpty()){
             return Collections.emptyList();
         }else{
@@ -58,8 +63,10 @@ public class BooleanSearchEngine implements SearchEngine {
                     for (int i = 1; i < count ; i++) {
                         ts.setStartPage(i);
                         ts.setEndPage(i);
-                        var text = ts.getText(pdd);
-                        var words = text.split("\\P{IsAlphabetic}+");
+                        String text = ts.getText(pdd);
+                        String [] words = text.split("\\P{IsAlphabetic}+");
+//                        var text = ts.getText(pdd);  //на 18  джаву
+//                        var words = text.split("\\P{IsAlphabetic}+");  //на 18  джаву
                         addToIdxMap(this.idxMap, words, f.getName(), i);
                     }
                     //определение количества страниц (нужно ниже)//получить объект одной страницы документа (нужно)
