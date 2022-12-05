@@ -46,6 +46,7 @@ public class Main {
 //            e.printStackTrace();
 //        }
 //    }
+//1,2,3 корректировка джавы
 
 // Запуск сервера, обслуживающего поисковые запросы
     static final int SERVER_PORT = 8989;
