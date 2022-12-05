@@ -14,7 +14,7 @@ public class BooleanSearchEngine implements SearchEngine {
             map.computeIfAbsent(lowerWord, k -> new ArrayList<>());
             ArrayList <PageEntry> array = map.get(lowerWord);
             List <PageEntry> filteredArray = array.stream().filter(pg -> pg.getPdfName().equals(fn) && pg.getPage() == page).collect(Collectors.toList());
-                if (filteredArray.size() > 0){
+                if (!filteredArray.isEmpty()){
                 PageEntry curPe = filteredArray.get(0);
                 curPe.setCount(curPe.getCount() + 1);
             }else{
